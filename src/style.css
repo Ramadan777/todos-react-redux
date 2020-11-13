@@ -1,0 +1,84 @@
+.app {
+    width: 450px;
+    margin: auto;
+}
+
+.header {
+    font-size: 22px;
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.form {
+    display: flex;
+}
+
+.form input {
+    flex: 1;
+    border: 1px solid #E5E5E5;
+    border-radius: 3px;
+    outline: transparent;
+    padding-left: 15px;
+}
+
+.form button {
+    background-color: #634BF5;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    margin-left: 15px;
+    border-radius: 3px;
+    outline: transparent;
+    cursor: pointer;
+}
+
+.todos {}
+
+.todo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.favorite {
+    padding: 0 15px;
+}
+
+.favorite button {
+    outline: transparent;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.todo-text {
+    flex: 1;
+}
+
+.selected {
+    background-color: #FFF6D6;
+}
+
+.selected .favorite button {
+    color: #FFD231;
+}
+
+.actions button {
+    color: red;
+    border: none;
+    outline: transparent;
+    background-color: transparent;
+    cursor: pointer;
+    padding-right: 15px;
+}
+
+.app .checkbox {
+    cursor: pointer;
+    margin-top: 15px;
+}
