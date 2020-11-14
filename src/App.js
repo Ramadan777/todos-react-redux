@@ -1,62 +1,44 @@
 import './style.css'
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo, deleteTodo, makeFavoriteTodo } from './actions'
 
 function App() {
-  const todoList = [
-    {
-      text: 'Купить бананы',
-      favorite: false
-    },
-    {
-      text: 'Продать квартиру',
-      favorite: false
-    },
-    {
-      text: 'Выучить уроки по JavaScript',
-      favorite: true
-    }
-  ]
 
-  const [todos, setTodos] = useState(todoList);
+  const todos = useSelector(function (state) {
+    return state.todos;
+  })
+
+  const dispatch = useDispatch();
 
   const [text, setText] = useState("");
 
   const [check, setCheck] = useState(false);
 
-  const deleteTodo = (i) => {
-    const filtered = todos.filter((todo, index) => {
-      if(index === i) {
-        return false;
-      }
-      return true;
-    });
+  const [error, setError] = useState(false);
 
-    setTodos(filtered);
+  const handleDelete = (index) => {
+    dispatch(deleteTodo(index))
   }
 
   const makeFavorite = (i) => {
-    const newTodos = todos.map((item, index) => {
-      if(i === index) {
-        return {
-          ...item,
-          favorite: !item.favorite
-        }
-      }
-      return item;
-    });
-
-    setTodos(newTodos);
+    dispatch(makeFavoriteTodo(i))
   }
 
   const handleClick = () => {
-    setTodos([
-      ...todos,
-      {text: text, favorite: check}
-    ])
+    if (text.length > 0) {
+      dispatch(addTodo(text, check))
+      setText('')
+      setCheck(false)
+    } else {
+        setError(true);
+    }
   }
+
 
   const handleChange = (e) => {
     setText(e.target.value)
+    setError(false)
   }
 
   const handleCheck = () => {
@@ -67,6 +49,9 @@ function App() {
     <div className="app">
       <div className="header">
         Список дел
+      </div>
+      <div className="error">
+        {error ? 'заполни поле' : ''}
       </div>
       <div className="form">
         <input
@@ -95,7 +80,7 @@ function App() {
                 {todo.text}
               </div>
               <div className="actions">
-                <button onClick={() => deleteTodo(index)}>X</button>
+                <button onClick={() => handleDelete(index)}>X</button>
               </div>
             </div>
           )
