@@ -9,6 +9,3 @@ export function makeFavoriteTodo(i) {
 export function addTodo(text, check) {
   return {type: 'add' , payload: {text, check}}
 }
-
-//action creator
-//экш креэйтор
